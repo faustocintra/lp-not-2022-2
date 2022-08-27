@@ -26,6 +26,37 @@
 
         // Operador
         let oper = prompt('Operador (+, -, *, X, x, / ou :):')
+
+        let resultado
+
+        // Validação dos dados de entrada
+        if(isNaN(num1)) {
+            alert('ERRO: primeiro número inválido ou não informado.')
+        }
+        else if(isNaN(num2)) {
+            alert('ERRO: segundo número inválido ou não informado.')
+        }
+        // Daqui em diante os números são válidos e passamos a verificar
+        // qual foi o operador escolhido
+        else if(oper === '+') {
+            resultado = num1 + num2
+        }
+        else if(oper === '-') {
+            resultado = num1 - num2
+        }
+        else if(oper === '*' || oper === 'X' || oper === 'x') {
+            resultado = num1 * num2
+        }
+        else if(oper === '/' || oper === ':') {
+            resultado = num1 / num2
+        }
+        else {
+            alert('ERRO: operador desconhecido.')
+        }
+
+        if(resultado !== undefined) {
+            document.write('O resultado do cálculo é ' + resultado)
+        }
     </script>
 </head>
 <body>
