@@ -17,6 +17,24 @@
             exemplo, se os números informados forem 20 e 25, você
             somará 20 + 21 + 22 + 23 + 24 + 25.
         */
+
+        let num1, num2
+
+        do {
+            num1 = parseInt(prompt('Informe o primeiro número:'))
+        } while(isNaN(num1))
+
+        do {
+            num2 = parseInt(prompt('Informe o segundo número, maior que o primeiro:'))
+        } while(isNaN(num2) || num2 <= num1)
+
+        let soma = 0
+        for(let i = num1; i <= num2; i++) {
+            soma += i
+        }
+
+        document.write(`A soma dos números do intervalo entre ${num1} e ${num2} é ${soma}.`)
+
     </script>
 </head>
 <body>
