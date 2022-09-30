@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PROVA 1 (Turma A)</title>
+    <script>
+        /*
+            2. Percorra   a   lista   de   andares   (de   1   a   109)   usando   o  loop  for  e   exiba,   com  document.write(), apenas os andares existentes
+        */
+        for(let andar = 1; andar <= 109; andar++) {
+            if(andar % 13 !== 0) {
+                document.write(andar + ', ')
+            }
+        }
+        /*
+            3. Peça   ao   usuário   para   informar   o   número   correspondente
+            a   um   dos   andares   do superprédio, um inteiro entre 1 e 109.
+            Valide a entrada com do..while.
+        */
+        let andar
+        do {
+            andar = parseInt(prompt('Informe um andar (1 a 109):'))
+        } while(isNaN(andar) || andar < 1 || andar > 109)
+        /*
+            4. Em   seguida,   usando   uma   construção  if..else,   informe   ao
+            usuário, usando document.write(), se andar informado existe ou não.
+        */
+        if(andar % 13 !== 0) {
+            document.write('<br>O andar informado existe.')
+        }
+        else {
+            document.write('<br>O andar informado NÃO existe.')
+        }
+        /*
+            5. Continuando, monte uma estrutura switch..case para verificar se o
+            andar informado já possui destinação prevista e informar ao usuário, 
+            se for o caso. Se não houver nada, informe ‘Disponível’. Exiba o
+            resultado do switch..case usando document.write().
+        */
+        switch(andar) {
+            case 23:
+            case 57:
+            case 100:
+                document.write('<br>Praça de alimentação')
+                break
+            case 22:
+            case 56:
+            case 99:
+                document.write('<br>Shopping Center')
+                break
+            case 63:
+                document.write('<br>Museu')
+                break
+            case 80:
+                document.write('<br>Cinemas')
+                break
+            case 6:
+            case 101:
+                document.write('<br>Joalherias')
+                break
+            case 109:
+                document.write('<br>Mirante')
+                break
+            default:
+                // Garantindo que a mensagem seja exibida apenas
+                // para andares existentes
+                if(andar % 13 !== 0) {
+                    document.write('<br>Disponível')
+                }
+        }
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
