@@ -135,10 +135,113 @@
                 return false
             }
 
+            let valorHorario = parseInt(horario.value)
+            if(isNaN(valorHorario) || valorHorario < 0 || valorHorario > 23) {
+                alert('Hora do dia inválida ou não informada.')
+                horario.focus()
+                return false
+            }
+
+            // Pelo menos uma das opções "Exibir com alert()" ou
+            // "Exibir no documento" deve estar marcada
+            let alertMarcado = exibirAlert.checked
+            let docMarcado = exibirDoc.checked
+            if(! alertMarcado && ! docMarcado) {
+                alert('Pelo menos uma das opções de exibição deve estar marcada.')
+                exibirAlert.focus()
+            }
+
             return true
         }
 
-        enviar.addEventListener('click', validar)
+        function montarSaudacao() {
+            // Só monta a saudação se o formulário for válido
+            if(validar()) {
+
+                /* 
+                    Exemplo de texto de saudação que será montado
+                    pelo código abaixo:
+                    Boa noite, Excelentíssima Maricota Catupirina! Como posso ser útil?
+                */
+
+                let textoSaudacao = ''
+
+                // Verifica a hora do dia selecionada para determinar se
+                // dará bom dia, boa tarde ou boa noite
+                if(horario.value < 12) {
+                    textoSaudacao = 'Bom dia, '
+                }
+                else if(horario.value < 18) {
+                    textoSaudacao = 'Boa tarde, '
+                }
+                else {
+                    textoSaudacao = 'Boa noite, '
+                }
+
+                // Decide qual forma de tratamento usar, considerando
+                // o sexo escolhido
+                switch(tratamento.selectedIndex) {
+                    case 1:
+                        textoSaudacao += 'Vossa Majestade '
+                        break
+                    case 2:
+                        if(masculino.checked) {
+                            textoSaudacao += 'Excelentíssimo '
+                        }
+                        else {
+                            textoSaudacao += 'Excelentíssima '
+                        }
+                        break
+                    case 3:
+                        if(masculino.checked) {
+                            textoSaudacao += 'Ilustríssimo '
+                        }
+                        else {
+                            textoSaudacao += 'Ilustríssima '
+                        }
+                        break
+                    case 4:
+                        textoSaudacao += 'Vossa Senhoria '
+                        break
+                    case 5:
+                        if(masculino.checked) {
+                            textoSaudacao += 'Senhor '
+                        }
+                        else {
+                            textoSaudacao += 'Senhora '
+                        }
+                        break
+                    default:
+                        if(masculino.checked) {
+                            textoSaudacao += 'Cremosíssimo '
+                        }
+                        else {
+                            textoSaudacao += 'Cremosíssima '
+                        }
+                }
+
+                // Adiciona o nome e o sobrenome
+                textoSaudacao += primeiroNome.value + ' '
+                textoSaudacao += sobrenome.value
+
+                // Adiciona o final da saudação
+                textoSaudacao += '! Como posso ser útil?' 
+
+                // Exibe com alert(), se essa opção estiver marcada
+                if(exibirAlert.checked) {
+                    alert(textoSaudacao)
+                    saudacao.textContent = ''   // Limpa a saudação no documento
+                }
+
+                // Exibe na div do documento, se essa opção estiver marcada
+                if(exibirDoc.checked) {
+                    saudacao.textContent = textoSaudacao
+                }
+
+            }
+        }
+
+        enviar.addEventListener('click', montarSaudacao)
     </script>
 </body>
 </html>
